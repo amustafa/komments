@@ -1,0 +1,153 @@
+{
+  "name": "komments",
+  "displayName": "Komments",
+  "description": "Non-inline code annotations — leave comments on any line without modifying source files",
+  "version": "0.1.0",
+  "publisher": "komments",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "komments.addComment",
+        "title": "Add Comment at Cursor",
+        "category": "Komments"
+      },
+      {
+        "command": "komments.addCommentAtSelection",
+        "title": "Add Comment at Selection",
+        "category": "Komments"
+      },
+      {
+        "command": "komments.refreshComments",
+        "title": "Refresh Comments",
+        "category": "Komments",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "komments.toggleArchived",
+        "title": "Toggle Archived Comments",
+        "category": "Komments",
+        "icon": "$(archive)"
+      },
+      {
+        "command": "komments.archiveComment",
+        "title": "Archive Comment",
+        "category": "Komments",
+        "icon": "$(archive)"
+      },
+      {
+        "command": "komments.unarchiveComment",
+        "title": "Unarchive Comment",
+        "category": "Komments"
+      },
+      {
+        "command": "komments.editComment",
+        "title": "Edit Comment",
+        "category": "Komments",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "komments.deleteComment",
+        "title": "Delete Comment",
+        "category": "Komments",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "komments.goToComment",
+        "title": "Go to Comment Location",
+        "category": "Komments"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "komments",
+          "title": "Komments",
+          "icon": "$(comment-discussion)"
+        }
+      ]
+    },
+    "views": {
+      "komments": [
+        {
+          "id": "komments.commentsView",
+          "name": "Comments"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "komments.refreshComments",
+          "when": "view == komments.commentsView",
+          "group": "navigation"
+        },
+        {
+          "command": "komments.toggleArchived",
+          "when": "view == komments.commentsView",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "komments.archiveComment",
+          "when": "view == komments.commentsView && viewItem == active",
+          "group": "inline"
+        },
+        {
+          "command": "komments.editComment",
+          "when": "view == komments.commentsView",
+          "group": "inline"
+        },
+        {
+          "command": "komments.unarchiveComment",
+          "when": "view == komments.commentsView && viewItem == archived"
+        },
+        {
+          "command": "komments.deleteComment",
+          "when": "view == komments.commentsView"
+        },
+        {
+          "command": "komments.goToComment",
+          "when": "view == komments.commentsView"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "komments.addComment",
+          "group": "komments",
+          "when": "!editorHasSelection"
+        },
+        {
+          "command": "komments.addCommentAtSelection",
+          "group": "komments",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Komments",
+      "properties": {
+        "komments.bin": {
+          "type": "string",
+          "default": "komments",
+          "description": "Path to the komments binary. Defaults to 'komments' (must be on PATH)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.8.0"
+  }
+}
