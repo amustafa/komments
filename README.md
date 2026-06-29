@@ -94,6 +94,11 @@ Each comment records the `project_root` it belongs to (detected as the git repo 
 
 ## Installation
 
+```bash
+git clone https://github.com/amustafa/komments.git
+cd komments
+```
+
 ### CLI (Go binary)
 
 ```bash
@@ -112,7 +117,7 @@ The binary is statically linked (pure-Go SQLite via `modernc.org/sqlite`) — no
 
 ```lua
 {
-  "your-user/komments.nvim",
+  "amustafa/komments",
   config = function()
     require("komments").setup()
   end,
