@@ -5,6 +5,7 @@ vscode-komments/dist/
 
 # Go binary
 /komments
+build/
 
 # Codev (added by codev update 2026-06-28)
 .agent-farm/
