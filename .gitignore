@@ -1,0 +1,15 @@
+node_modules/
+mcp-server/dist/
+vscode-komments/dist/
+.komments/
+
+# Go binary
+/komments
+
+# Codev (added by codev update 2026-06-28)
+.agent-farm/
+.consult/
+codev/.update-hashes.json
+.builders/
+.architect-role.md
+.codev
